@@ -1,5 +1,7 @@
-import { urlBase64ToUint8Array } from "@/lib/notification"
+"use client"
+
 import { useEffect, useState } from "react"
+import { urlBase64ToUint8Array } from "@/lib/notification"
 import { sendNotification, subscribeUser, unsubscribeUser } from "./actions"
 
 const NotificationsPage = () => {
