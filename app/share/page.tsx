@@ -1,9 +1,14 @@
 "use client";
 
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 const SharePage = () => {
     const [shareInfo, setShareInfo] = useState({ title: "Title of the page", text: "this is text shared using ShareAPI", url: process.env.NEXT_PUBLIC_BASE_URL + "/share" });
+    const share = useCallback(async () => {
+        try { await navigator.share(shareInfo) }
+        catch (e) { console.error(`Error while sharing: ${(e as Error).message}`) }
+    }, [shareInfo])
+
     return (
         <div className='flex flex-col gap-3 w-[90%] py-3 mx-auto'>
             <label htmlFor="title">
@@ -18,7 +23,7 @@ const SharePage = () => {
                 <p>URL</p>
                 <input type="text" value={shareInfo.url} id='url' placeholder='url' onChange={e => setShareInfo(p => ({ ...p, url: e.target.value }))} />
             </label>
-            <button className='bg-red-400 rounded-lg p-2' onClick={async () => { try { await navigator.share(shareInfo) } catch (e) { alert(`Error while sharing: ${(e as Error).message}`) } }}>Share</button>
+            <button className='bg-red-400 rounded-lg p-2' onClick={share}>Share</button>
         </div>
     )
 }
