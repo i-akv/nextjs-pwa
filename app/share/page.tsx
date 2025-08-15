@@ -10,18 +10,8 @@ import { useEffect, useState } from 'react'
 
 const SharePage = () => {
     const [shareInfo, setShareInfo] = useState({ title: "Title of the page", text: "this is text shared using ShareAPI", url: process.env.NEXT_PUBLIC_BASE_URL + "/share" });
-    const [canShare, setCanShare] = useState(false);
-
-    useEffect(() => {
-        try {
-            setCanShare(navigator.canShare());
-        } catch {
-            setCanShare(false);
-        }
-    }, [])
     return (
         <div className='flex flex-col gap-3 w-[90%] py-3 mx-auto'>
-            <p className={canShare ? "hidden" : "text-red-400"}>{canShare ? "" : "does not work on this device"}</p>
             <label htmlFor="title">
                 <p>Title</p>
                 <input type="text" value={shareInfo.title} id="title" placeholder='title' onChange={e => setShareInfo(p => ({ ...p, title: e.target.value }))} />
