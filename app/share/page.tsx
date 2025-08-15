@@ -1,12 +1,6 @@
 "use client";
 
-// import { Metadata } from 'next';
-import { useEffect, useState } from 'react'
-
-// export const metadata: Metadata = {
-//     title: "share api",
-//     description: "use native share api to mock share behaviour like mobile apps"
-// }
+import { useState } from 'react'
 
 const SharePage = () => {
     const [shareInfo, setShareInfo] = useState({ title: "Title of the page", text: "this is text shared using ShareAPI", url: process.env.NEXT_PUBLIC_BASE_URL + "/share" });

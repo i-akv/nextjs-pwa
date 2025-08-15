@@ -24,7 +24,7 @@ const InstallPage = () => {
 
         // @ts-expect-error - The type is specific to the browser event
         deferredPrompt.prompt();
-        // @ts-expect-error
+        // @ts-expect-error - not sure why
         const { outcome } = await deferredPrompt.userChoice;
         if (outcome === "accepted") {
             console.log("PWA installation accepted");
